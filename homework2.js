@@ -1,5 +1,19 @@
 //////Name: Lauren Morales, File name: homework1.js/////
 
+function removedata1() {
+    document.getElementById("outputformdata").innerHTML = "(you started over)";
+  }
+    
+function validateForm(event) {
+    const errors = validateInputs();
+    if (errors.length > 0) {
+        event.preventDefault();
+        displayErrors(errors);
+        return false;
+    }
+    return true;
+}
+
 function validateInputs() {
     let error = [];
 
