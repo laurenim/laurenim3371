@@ -3,15 +3,12 @@
 function removedata1() {
     document.getElementById("outputformdata").innerHTML = "(you started over)";
   }
-    
-function validateForm(event) {
+
+function formInput(event) {
+    event.preventDefault();
     const errors = validateInputs();
-    if (errors.length > 0) {
-        event.preventDefault();
-        displayErrors(errors);
-        return false;
-    }
-    return true;
+    const formData = new FormData(docuemnt.getElementById('signup'));
+    displayFormOutput(formData, errors);
 }
 
 function validateInputs() {
@@ -109,12 +106,34 @@ function validateInputs() {
     }
         return error;
     }
-    function displayErrors(errors) {
-        const errorContainer = document.getElementById("errorMessages");
-        errorContainer.innerHTML = "";
-        errors.forEach(error => {
-            const errorElement = document.createElement("p");
-            errorElement.textContent = error;
-            errorContainer.appendChild(errorElement);
+
+    function displayFormOutput(FormData,errors) {
+        const Container = document.getElementById("errorMessages");
+        container.innerHTML = "";
+        const outputForm = document.createElement('form');
+        outputForm.className = 'readonly-form';
+
+        formData.foreach((value, key) => {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = key;
+            input.value = value;
+            input.classname = 'readonly';
+            input.readOnly = true;
+
+            if (errors.some(error => error.toLowerCase().includes(key.toLowerCase()))) {
+                input.classList.add('error');
+            }
+            outputForm.appendChild(input);
+            outputForm.appendChild(document.createElement('br'));
         });
+
+        errors.forEach(error => {
+            const errorElement = document.createElement('p');
+            errorElement.textContent = error;
+            errorElement.className = 'error';
+            outputForm.appendChild(errorElement);
+        });
+
+        container.appendChild(outputForm);
     }

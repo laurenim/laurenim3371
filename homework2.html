@@ -27,7 +27,7 @@
             <p>Today's Date:</p>
             <span id="today"></span>
         </div>
-    <form onreset="removedata1()" onsubmit="return validateForm(event)" action="homework1-thankyou.html">
+    <form id="signup" onreset="removedata1()" onsubmit="return validateForm(event)" action="homework1-thankyou.html">
     <center>
     <table class="form">
         <tr class="form">
@@ -372,14 +372,21 @@
         <tr class="form">
             <td>
             <input type="submit" 
-                    value="Submit">
+                    value="Submit"
+                    onclick= "validateForm">
             <input type="reset" 
-                    value="Reset">
+                    value="Reset"
+                    onclick="removedata1">
             </td>
         </tr>
     </table>
     </center>
     </form>
+
+    <div>
+        <p id="outputformdata"></p>
+    </div>
+
     <footer>
     <div class="footerh">
             <img    src="hw1logo.png"
