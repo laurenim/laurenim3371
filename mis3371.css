@@ -1,0 +1,77 @@
+//Name: Lauren Morales
+//Name of File: homework2.html
+//Date Created: 2024-18-06
+//Date Updated: 2024-18-06
+//Version: 0.2
+//Purpose: MIS3371 CSS for Homework 2 Medical Form
+
+.body {
+  background-color: #a8afc9;
+  color: #F3F2EE;
+}
+.h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:#F3F2EE;
+  color: #1F2B5B;
+  padding: 20 px;
+  font-size: 35 px;
+}
+.date {
+  display: flex;
+  float: right;
+}
+
+.form {
+    background-color: #F3F2EE;
+    color: #1F2B5B;
+    text-align: left;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+th, td {
+    background-color: #F3F2EE;
+    color: #1F2B5B;
+    text-align: left;
+    padding: 5px;
+}
+
+table.form {
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.footerh {
+    background-color: #F3F2EE;
+    color: #1F2B5B;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: "Be Vietnam", sans-serif;
+    font-size: 15px;
+}
+
+.footer {
+  background-color: #F3F2EE;
+  color: #1F2B5B;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  margin-right: 150px;
+}
+
+.column {
+  width: 150px;
+}
