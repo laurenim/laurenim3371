@@ -107,8 +107,8 @@ function validateInputs() {
         return error;
     }
 
-    function displayFormOutput(FormData,errors) {
-        const Container = document.getElementById("errorMessages");
+    function displayFormOutput(formData,errors) {
+        const container = document.getElementById("outputformdata");
         container.innerHTML = "";
         const outputForm = document.createElement('form');
         outputForm.className = 'readonly-form';
