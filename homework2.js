@@ -109,3 +109,12 @@ function validateInputs() {
     }
         return error;
     }
+    function displayErrors(errors) {
+        const errorContainer = document.getElementById("errorMessages");
+        errorContainer.innerHTML = "";
+        errors.forEach(error => {
+            const errorElement = document.createElement("p");
+            errorElement.textContent = error;
+            errorContainer.appendChild(errorElement);
+        });
+    }
