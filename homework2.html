@@ -42,9 +42,10 @@
                     size="15" 
                     maxlength="30"
                     placeholder="Required"
-                    pattern="[A-Za-z-']{2,}"
+                    pattern="^[A-Za-z-']{2,}"
                     oninvalid="this.setCustomValidity('First Name not valid.')"
                     oninput="this.setCustomValidity('')"
+                    onblur="checkfname()"
             required>
             <label for="minitial"> MI:</label>
             <input  type="text"
@@ -67,6 +68,7 @@
                     oninvalid="this.setCustomValidity('Last Name not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
+            <span id="name_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -79,6 +81,7 @@
                     oninvalid="this.setCustomValidity('DOB not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
+            <span id="dob_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -94,6 +97,7 @@
                     oninvalid="this.setCustomValidity('SSN not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
+            <span id="ssn_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -108,6 +112,7 @@
                     oninvalid="this.setCustomValidity('Address 1 not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
+            <span id="address1_message"></span>
             <label for="address2">Address Line 2:</fname>
             <input type="text" 
                     name="Address" 
@@ -116,6 +121,7 @@
                     placeholder="Apt #555"
                     oninvalid="this.setCustomValidity('Address 2 not valid.')"
                     oninput="this.setCustomValidity('')">
+            <span id="address2_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -194,6 +200,9 @@
                     oninvalid="this.setCustomValidity('Zip Code not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
+            <span id="city_message"></span>
+            <span id="state_message"></span>
+            <span id="zip_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -211,6 +220,7 @@
             <input  type="radio"
                     name="radio1"
                     id="one">Unsure
+            <span id="new_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -235,6 +245,7 @@
                     size="3"
                     pattern="[0-9]{4}"
                     placeholder="3333"></input>
+            <span id="phone_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -246,6 +257,7 @@
                     pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+[A-Za-z]{2,4}%"
                     placeholder="cooldude@hotmail.com"
             required>
+            <span id="email_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -259,6 +271,7 @@
             <input  type="radio"
                     name="radio2"
                     id="one">Female
+            <span id="gender_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -276,6 +289,7 @@
             <input type="radio"
                     name="radio3"
                     id="one">Unsure
+            <span id="covid_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -287,6 +301,7 @@
                         name="textArea"
                         required>
             </textarea>
+            <span id="text_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -329,6 +344,7 @@
                     id="text"
                     placeholder="List type"
                     maxlength="50">
+            <span id="familyh_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -348,6 +364,7 @@
                 output.innerHTML = this.value;
             }
         </script>
+            <span id="slider_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -361,6 +378,7 @@
                     oninvalid="this.setCustomValidity('Username not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
+            <span id="usr_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -374,6 +392,7 @@
                     oninvalid="this.setCustomValidity('Password not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
+            <span id="pwd_message"></span>
             <label for="pwd2">Verify Password:</label>
             <input  type="password"
                     name="pwd" 
@@ -381,6 +400,7 @@
                     oninvalid="this.setCustomValidity('Passwords not equal.')"
                     oninput="this.setCustomValidity('')"
             required>
+            <span id="pwd2_message"></span>
             </td>
         </tr>
         <tr class="form">
@@ -389,15 +409,17 @@
                     value="Submit">
             <input type="reset" 
                     value="Reset">
+            <input type="button"
+                    name="review"
+                    value="Review"
+                    onclick="getdata1()">
             </td>
         </tr>
     </table>
     </center>
     </form>
 
-    <div>
-        <p id="outputformdata"></p>
-    </div>
+        <p id="outputformdata"></p>    
 
     <footer>
     <div class="footerh">
