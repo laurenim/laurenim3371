@@ -9,13 +9,13 @@
     Note: asdf
 -->
 <html>
-    <head class="h1">
+    <head>
         <meta charset="utf-8">
         <title> Lauren Morales Homework 2 </title>
         <link rel="stylesheet" href="mis3371.css">
     </head>
     
-    <body onload="currentDate()">
+    <body onload="setup()">
         <div class="h1">
             <img    id="logo" 
                     src="hw1logo.png" 
@@ -27,7 +27,7 @@
             <p>Today's Date:</p>
             <span id="today"></span>
         </div>
-    <form name="signup" id="signup" onreset="removedata1()" onsubmit="return validateForm(event)" action="homework1-thankyou.html">
+    <form name="signup" id="signup" onreset="removedata1()" action="homework1-thankyou.html">
     <center>
     <table class="form">
         <tr class="form">
@@ -42,8 +42,6 @@
                     size="15" 
                     maxlength="30"
                     placeholder="Required"
-                    oninvalid="this.setCustomValidity('First Name not valid.')"
-                    oninput="this.setCustomValidity('')"
                     onblur="checkfname()"
             required>
             <label for="minitial"> MI:</label>
@@ -53,8 +51,6 @@
                     size="1"
                     maxlength="1"
                     placeholder="M"
-                    oninvalid="this.setCustomValidity('Middle Initial not valid.')"
-                    oninput="this.setCustomValidity('')">
             <label for="lname">Last name:</label>
             <input  type="text"
                     id="lname"
@@ -62,10 +58,8 @@
                     size="15" 
                     maxlength="30"
                     placeholder="Required"
-                    oninvalid="this.setCustomValidity('Last Name not valid.')"
-                    oninput="this.setCustomValidity('')"
             required>
-            <span id="name_message"></span>
+            <span id="name_message" class="error"></span>
             </td>
         </tr>
         <tr class="form">
@@ -74,10 +68,8 @@
             <input  type="date" 
                     id="dob"
                     placeholder="Required"
-                    oninvalid="this.setCustomValidity('DOB not valid.')"
-                    oninput="this.setCustomValidity('')"
             required>
-            <span id="dob_message"></span>
+            <span id="dob_message" class="error"></span>
             </td>
         </tr>
         <tr class="form">
@@ -87,10 +79,8 @@
                     id="ssn"
                     name="ssn"
                     placeholder="111223333"
-                    oninvalid="this.setCustomValidity('SSN not valid.')"
-                    oninput="this.setCustomValidity('')"
             required>
-            <span id="ssn_message"></span>
+            <span id="ssn_message" class="error"></span>
             </td>
         </tr>
         <tr class="form">
@@ -98,22 +88,18 @@
             <label for = "address1"> Address Line 1: </fname>
             <input  type = "text"
                     name = "Address"
-                    id= "Address"
+                    id= "address"
                     maxlength="30"
                     placeholder = "1010 Shasta Rd"
-                    oninvalid="this.setCustomValidity('Address 1 not valid.')"
-                    oninput="this.setCustomValidity('')"
             required>
-            <span id="address1_message"></span>
+            <span id="address1_message" class="error"></span>
             <label for="address2">Address Line 2:</fname>
             <input type="text" 
                     name="Address" 
-                    id="Address"
+                    id="address2"
                     maxlength="30" 
                     placeholder="Apt #555"
-                    oninvalid="this.setCustomValidity('Address 2 not valid.')"
-                    oninput="this.setCustomValidity('')">
-            <span id="address2_message"></span>
+            <span id="address2_message" class="error"></span>
             </td>
         </tr>
         <tr class="form">
@@ -121,10 +107,8 @@
             <label for="city"> City: </label>
             <input  type="text"
                     name="City"
-                    id="City"
+                    id="city"
                     size="10"
-                    oninvalid="this.setCustomValidity('City not valid.')"
-                    oninput="this.setCustomValidity('')"
             required>
             <label for="state"> State:</label>
             <select name="state" >
@@ -185,14 +169,12 @@
             <label for="zipCode">ZipCode:</label>
             <input  type="text"
                     name="zipcode"
-                    id="zipcode"
+                    id="zip"
                     size=5
-                    oninvalid="this.setCustomValidity('Zip Code not valid.')"
-                    oninput="this.setCustomValidity('')"
             required>
-            <span id="city_message"></span>
+            <span id="city_message" class="error"></span>
             <span id="state_message"></span>
-            <span id="zip_message"></span>
+            <span id="zip_message" class="error"></span>
             </td>
         </tr>
         <tr class="form">
@@ -218,11 +200,11 @@
             <label for="phone">Phone Number:</label>
             <input  type="tel"
                     id="phone"
-                    name="phone1"
-                    size="2"
+                    name="phone"
+                    size="12"
                     placeholder="111-111-1111"
             required>
-            <span id="phone_message"></span>
+            <span id="phone_message" class="error"></span>
             </td>
         </tr>
         <tr class="form">
@@ -234,7 +216,7 @@
                     pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+[A-Za-z]{2,4}%"
                     placeholder="cooldude@hotmail.com"
             required>
-            <span id="email_message"></span>
+            <span id="email_message" class="error"></span>
             </td>
         </tr>
         <tr class="form">
@@ -351,10 +333,8 @@
                     name="usr" 
                     id="usr" 
                     placeholder="8 char, 1 number"
-                    oninvalid="this.setCustomValidity('Username not valid.')"
-                    oninput="this.setCustomValidity('')"
             required>
-            <span id="usr_message"></span>
+            <span id="usr_message" class="error"></span>
             </td>
         </tr>
         <tr class="form">
@@ -364,24 +344,21 @@
                     name="pwd" 
                     id="pwd" 
                     placeholder="8 char, 1 number, 1 special char" 
-                    oninvalid="this.setCustomValidity('Password not valid.')"
-                    oninput="this.setCustomValidity('')"
             required>
             <span id="pwd_message"></span>
             <label for="pwd2">Verify Password:</label>
             <input  type="password"
                     name="pwd" 
-                    id="pwd"
-                    oninvalid="this.setCustomValidity('Passwords not equal.')"
-                    oninput="this.setCustomValidity('')"
+                    id="pwd2"
             required>
-            <span id="pwd2_message"></span>
+            <span id="pwd2_message" class="error"></span>
             </td>
         </tr>
         <tr class="form">
             <td>
             <input type="submit" 
-                    value="Submit">
+                    value="Submit"
+                    onclick="return validateInputs()">
             <input type="reset" 
                     value="Reset">
             <input type="button"
@@ -397,15 +374,15 @@
         <p id="outputformdata"></p>    
 
     <footer>
-    <div class="footerh">
+        <div class="footerh">
             <img    src="hw1logo.png"
                     alt="Houston Vitality Sports Medicine"
                     class="logo">
             <div class="h1">
                 <p>Contact us</p>
             </div>
-    </div>
-    <div class="footer">
+        </div>
+        <div class="footer">
         <div class="column">
             <p><strong>Phone:</strong>(111) 111-1111</p>
             <p><strong>Address:</strong>555 Rockets Lane<br>Houston, TX 77044</p>
@@ -423,14 +400,14 @@
             <input type="button" 
                     value="Vitality Sports Medicine" ></a>
         </div>
-    </div>
+        </div>
     </footer>
 
     <script src="homework2.js"></script>
     <script>
        const today = new Date();
-    let text = d.toLocaleDateString();
-    document.getElementById("today").innerHTML = text;
+       let text = today.toLocaleDateString();
+        document.getElementById("today").innerHTML = text;
     </script>
 
 </body>

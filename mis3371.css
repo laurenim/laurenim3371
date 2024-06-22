@@ -79,21 +79,21 @@ table.form {
 table.output, tr.output, td.output {
     width: 70%;
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color:green;
+    font-family: "Times New Roman", Times, serif;
+    background-color:#F3F2EE;
     padding: 2px;
     border-spacing: 2px;
-    color:rgb(222, 243, 245);
+    color:#1F2B5B;
   }
 
   td.outputdata {
     width: 70%;
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color:white;
+    font-family: "Times New Roman", Times, serif;
+    background-color:#F3F2EE;
     padding: 2px;
     border-spacing: 2px;
-    color:black;
+    color:#1F2B5B;
 }
 
 input:invalid {

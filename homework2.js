@@ -55,12 +55,13 @@ function getdata1() {
 function validateInputs() {
     let error = [];
 
-    const namePattern = /^[A-Za-z\s"'"-]{2,}$/;
+    const namePattern = /^[A-Za-z\s'-]{2,}$/;
     const fName = document.getElementById("fname").value;
     const lName = document.getElementById("lname").value;
 
     if (!namePattern.test(fName)) {
         error.push("Letters, hyphens, apostrophes only.");
+        document.getElementById("fname_message").innerHTML = "Invalid first name: Letters, hyphens, apostrophes, and spaces only.";
     } else if(fName.length < 2) { 
         error.push("First name too short.");
         }
@@ -104,7 +105,7 @@ function validateInputs() {
     }
 
     const addressPattern = /^.{2,30}$/;
-    const address1 = document.getElementById("address1").value;
+    const address1 = document.getElementById("address").value;
     const address2 = document.getElementById("address2").value;
 
     if (!addressPattern.test(address1)) {
@@ -153,7 +154,7 @@ function validateInputs() {
     }
 
     const usrPattern = /^(?!.*\s)[A-Za-z_-][A-Za-z0-9_-]{4,29}$/;
-    const user = document.getElementById("usr").value.toLowerCase();
+    const usr = document.getElementById("usr").value.toLowerCase();
 
     if (!usrPattern.test(usr)) {
         error.push ("5 to 30 characters; No spaces; No special characters.");
@@ -174,17 +175,16 @@ function validateInputs() {
         error.push ("Passwords must match");
     }
 
-    return error;
+    return error.length > 0;
 }
 
 function checkform() {
-   let error_flag = 0;
-   const isValid = validateInputs();
-   console.log("Errors:", isValid);
+   const isValid = !validateInputs();
 
-   if (isValidlength > 0) {
+   if (!isValid) {
     error_flag = 1;
         alert("Please fix errors!");
+        document.getElementById("submit").disabled = true;
     }
     else {
         document.getElementById("submit").disabled = false;
