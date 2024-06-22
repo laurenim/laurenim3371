@@ -76,7 +76,17 @@ table.form {
   width: 150px;
 }
 
-td.outputdata {
+table.output, tr.output, td.output {
+    width: 70%;
+    opacity: 0.9;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:green;
+    padding: 2px;
+    border-spacing: 2px;
+    color:rgb(222, 243, 245);
+  }
+
+  td.outputdata {
     width: 70%;
     opacity: 0.9;
     font-family: Arial, Helvetica, sans-serif;
@@ -84,8 +94,13 @@ td.outputdata {
     padding: 2px;
     border-spacing: 2px;
     color:black;
-  }
+}
 
-  input:invalid {
+input:invalid {
     border: red solid 3px
-  }
+}
+
+.error {
+    color: orange;
+    font-size: 1
+}

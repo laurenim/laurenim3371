@@ -42,7 +42,6 @@
                     size="15" 
                     maxlength="30"
                     placeholder="Required"
-                    pattern="^[A-Za-z-']{2,}"
                     oninvalid="this.setCustomValidity('First Name not valid.')"
                     oninput="this.setCustomValidity('')"
                     onblur="checkfname()"
@@ -54,7 +53,6 @@
                     size="1"
                     maxlength="1"
                     placeholder="M"
-                    pattern="[A-Z^a-z]{0,}"
                     oninvalid="this.setCustomValidity('Middle Initial not valid.')"
                     oninput="this.setCustomValidity('')">
             <label for="lname">Last name:</label>
@@ -64,7 +62,6 @@
                     size="15" 
                     maxlength="30"
                     placeholder="Required"
-                    pattern="[A-Za-z-']+"
                     oninvalid="this.setCustomValidity('Last Name not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
@@ -77,7 +74,6 @@
             <input  type="date" 
                     id="dob"
                     placeholder="Required"
-                    min="1900-01-01"
                     oninvalid="this.setCustomValidity('DOB not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
@@ -90,10 +86,7 @@
             <input  type="password"
                     id="ssn"
                     name="ssn"
-                    minlength="9" 
-                    maxlength="9"
                     placeholder="111223333"
-                    pattern="^\d{9}$"
                     oninvalid="this.setCustomValidity('SSN not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
@@ -108,7 +101,6 @@
                     id= "Address"
                     maxlength="30"
                     placeholder = "1010 Shasta Rd"
-                    pattern="^.{2,30}$"
                     oninvalid="this.setCustomValidity('Address 1 not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
@@ -131,7 +123,6 @@
                     name="City"
                     id="City"
                     size="10"
-                    pattern="^[A-z][A-za-z' ']{2,29}"
                     oninvalid="this.setCustomValidity('City not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
@@ -196,7 +187,6 @@
                     name="zipcode"
                     id="zipcode"
                     size=5
-                    pattern="^[0-9]{5}"
                     oninvalid="this.setCustomValidity('Zip Code not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
@@ -230,21 +220,8 @@
                     id="phone"
                     name="phone1"
                     size="2"
-                    pattern="[0-9]{3}"
-                    placeholder="111"
-            required></input>-
-            <input type="tel"
-                    id="phone"
-                    name="phone2"
-                    size="2"
-                    pattern="[0-9]{3}"
-                    placeholder="222"></input>-
-            <input type="tel"
-                    id="phone"
-                    name="phone3"
-                    size="3"
-                    pattern="[0-9]{4}"
-                    placeholder="3333"></input>
+                    placeholder="111-111-1111"
+            required>
             <span id="phone_message"></span>
             </td>
         </tr>
@@ -374,7 +351,6 @@
                     name="usr" 
                     id="usr" 
                     placeholder="8 char, 1 number"
-                    pattern="^[A-Za-z][A-Za-z0-9_-]{4,29}$"
                     oninvalid="this.setCustomValidity('Username not valid.')"
                     oninput="this.setCustomValidity('')"
             required>
@@ -387,7 +363,6 @@
             <input  type="password" 
                     name="pwd" 
                     id="pwd" 
-                    pattern="^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$"
                     placeholder="8 char, 1 number, 1 special char" 
                     oninvalid="this.setCustomValidity('Password not valid.')"
                     oninput="this.setCustomValidity('')"
@@ -453,7 +428,7 @@
 
     <script src="homework2.js"></script>
     <script>
-       const d = new Date();
+       const today = new Date();
     let text = d.toLocaleDateString();
     document.getElementById("today").innerHTML = text;
     </script>

@@ -6,14 +6,14 @@ function setup() {
 }
 
 function removedata1() {
-    document.getElementById("outputformdata").innerHTML = "(you started over)";
+    document.getElementById("outputformdata").innerHTML = "";
   }
 
 function getdata1() {
     var formcontents = document.getElementById("signup");
-    var formoutput;
-    var datatype;
-    var i;
+  var formoutput;
+  var datatype;
+  var i;
     formoutput = "<table class='output'><th>Dataname</th><th>Type</th<th>Value</th>";
     for (i = 0; i < formcontents.clientHeight; i++) {
         console.log("item: "+i+" "formcontents.elements[i].name+" = "+formcontents.elements[i].value");
@@ -55,144 +55,172 @@ function getdata1() {
 function validateInputs() {
     let error = [];
 
-    const namePattern = /^[A-Za-z-']{2,}$/;
-    if (!namePattern.test(document.getElementById("fname").value)) {
-        error.push("First name must be 1 to 30 characters; Letters, apostrophes, and hyphens only");
-    }
-    if (!namePattern.test(document.getElementById("lName").value)) {
-        error.push("Last name must be 1 to 30 characters; Letters, apostrophes, hyphens, and numbers 2 to 5")
-    }
-    function checkfname() {
-        x = document.getElementById("fname").value;
-        if(x.length<2) { 
-              document.getElementById("name_message").innerHTML = "Invalid name... too short.";  
-              error_flag = 1;
-        }
-        else {
-            if (x.match(/[A-Za-z3-5'-]+$/)) {
-              document.getElementById("name_message").innerHTML = "";  
-            }
-            else  {
-              document.getElementById("name_message").innerHTML = "Invalid characters in name.";
-              error_flag = 1;
-              }
-        }
+    const namePattern = /^[A-Za-z\s"'"-]{2,}$/;
+    const fName = document.getElementById("fname").value;
+    const lName = document.getElementById("lname").value;
 
-    const middleInitialPattern = /^[A-Za-z]?$/;
-    if (!middleInitialPattern.test(document.getElementById("minitial").value)) {
-        error.push("Middle inital can only be 1 letter")
+    if (!namePattern.test(fName)) {
+        error.push("Letters, hyphens, apostrophes only.");
+    } else if(fName.length < 2) { 
+        error.push("First name too short.");
+        }
+    
+    if (!namePattern.test(lName)) {
+        error.push("Letters, hyphens, apostrophes only.");
+    } else if (lName.length < 2) {
+            error.push("Last name too short.");
+        }
+    
+    const mInitial = document.getElementById("minitial").value;
+
+    if (!mInitial.match(/^[A-Z]$/)){
+        error.push("1 Capital Letter only.");
     }
 
-    const dobPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/(19|20)|d{2}$/;
-    const dobValue = document.getElementById("dob").value;
-    if (dobPattern.test(dobValue)) {
-        const dobParts = dobValue.split("/");
-        const dobDate = new Date(dobParts[2], dobParts[0] - 1, dobParts[1]);
-        const currentDate = new Date();
-        const minDate = new Date(currentDate.getFullYear() - 120, currentDate.getMonth(), currentDate.getDate());
-        if (dobDate > currentDate || dobDate < minDate) {
-            error.push("Date of birth is out of range.");
-        }
-    } else {
-        error.push("Date of birth must follow MM/DD/YYYY format.");
+    function getMinDate() {
+        const today = new Date();
+        const minDate = new Date(today.setFullYear(today.getFullYear() - 120));
+        const year = minDate.getFullYear();
+        const month = ("0" + (minDate.getMonth() + 1)).slice(-2);
+        const day = ("0" + minDate.getDate()).slice(-2);
+        return `${month}-${day}-${year}`;
     }
 
+    document.getElementById("dob").min = getMinDate();
+
+    const dob = document.getElementById("dob").value;
+
+    if (!dob.match(/^\d{2}-\d{2}-\d{4}$/)) {
+        error.push("MM/DD/YYYY format only.");
+    }
+    
     const ssnPattern = /^\d{9}$/;
-    if (!ssnPattern.test(document.getElementById("ssn").value)) {
-        error.push("Social Secturity Number must follow XXXXXXXXX format (No Hyphens).");
+    const ssn = document.getElementById("ssn").value;
+
+    if(!ssnPattern.test(ssn)) {
+        error.push("Must follow XXXXXXXXX format (No hyphens).");
+    } else if (ssn.length !== 9) {
+        error.push("Only enter 9 digits");
     }
 
-    const address1Pattern = /^.{2,30}$/;
-    if (!address1Pattern.test(document.getElementById("address1").value)) {
-        error.push("Address Line 1 must be 2 to 30 characters.");
-    }
+    const addressPattern = /^.{2,30}$/;
+    const address1 = document.getElementById("address1").value;
+    const address2 = document.getElementById("address2").value;
 
-    const address2Value = document.getElementById("address2").value;
-    if (address2Value && !adress1Patern.test(address2Value)) {
-        error.push("Address Line 2 must be 2 to 30 characters if provided");
+    if (!addressPattern.test(address1)) {
+        error.push ("2 to 30 characters only.");
+    } else if (address1.length < 2) {
+        error.push ("Please enter address");
+    }
+    if (!addressPattern.test(address2)) {
+        error.push ("2 to 30 characters only.");
     }
 
     const cityPattern = /^[A-Za-z\s]{2,30}$/;
-    if (!cityPattern.test(document.getElementById("city").value)) {
-        error.push("City must be 2 to 30 characters; Only letters.");
+    const city = document.getElementById("city");
+
+    if (!cityPattern.test(city)) {
+        error.push ("2 to 30 characters only.");
+    } else if (city.length < 2) {
+        error.push ("Please enter City.");
     }
 
     const zipPattern = /^\d{5}$/;
-    if (!zipPattern.test(document.getElementById("zip").value)) {
-        error.push("Zip Code must follow XXXXX format");
+    const zip = document.getElementById("zip");
+
+    if (!zipPattern.test(zip)) {
+        error.push("Digits only.");
+    } else if (zip.length !== 5) {
+        error.push ("Please enter 5 digit Zip Code.");
     }
 
     const phonePattern = /^(\d{3}-\d{3}-\d{4})$/;
-    const phoneValue = document.getElementById("phone").value;
-    if (!phonePattern.test(phoneValue)); {
-        error.push("Phone number must be in XXX-XXX-XXXX format")
+    const phone = document.getElementById("phone").value;
+
+    if (!phonePattern.test(phone)) {
+        error.push ("Use XXX-XXX-XXXX format only.");
+    } else if (phone.length !== 12) {
+        error.push ("Enter phone number with dashes.");
     }
 
     const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+[A-Za-z]{2,4}%/;
-    if (!emailPattern.test(document.getElementById("email").value)) {
-        error.push("Email address mush follow name@domain.tld format")
+    const email = document.getElementById("email").value;
+
+    if (!emailPattern.test(email)) {
+        error.push ("Use email@domain.dlt format only.");
+    } else if (email.length < 2) {
+        error.push ("Enter email address.");
     }
 
-    const Yes = document.getElementById("radio1").checked;
-    const No = document.getElementById("radio1").checked;
-    const Unsure = document.getElementById("radio1").checked;
-    if (!Yes && !No && !Unsure) {
-        error.push("Please select one.")
+    const usrPattern = /^(?!.*\s)[A-Za-z_-][A-Za-z0-9_-]{4,29}$/;
+    const user = document.getElementById("usr").value.toLowerCase();
+
+    if (!usrPattern.test(usr)) {
+        error.push ("5 to 30 characters; No spaces; No special characters.");
+    } else if (usr.length < 5) {
+        error.push ("Please enter username.");
     }
 
-    const userIdPattern = /^(?!.*\s)[A-Za-z_-][A-Za-z0-9_-]{4,29}$/;
-    const userIdValue = document.getElementById("usr").value.toLowerCase();
-    if (!userIdPattern.test(userIdValue)) {
-        error.push("Username must be 5 to 30 characters; No spaces or special characters.");
+    const pwdPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/;
+    const pwd = document.getElementById("pwd").value;
+    const pwd2 = document.getElementById("pwd2").value;
+
+    if (!pwdPattern.test(pwd)) {
+        error.push ("8 to 30 characters, 1 upper case, 1 number, and 1 special character");
+    } else if (pwd.length < 8) {
+        error.push ("Please enter password");
+    }
+    if (pwd.value !== pwd2.value) {
+        error.push ("Passwords must match");
     }
 
-    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/;
-    const passwordInput = document.getElementById("pwd").value;
-    const userIdInput = document.getElementById("usr").value;
+    return error;
+}
 
-    if (!passwordPattern.test(passwordInput)) {
-        error.push("Password must be 8 to 30 characters and contain 1 upper case letter, 1 lower case letter, 1 number, and 1 special character.");
-    } else if (passwordInput.includes(userIdInput) || passwordInput === userIdInput) {
-        error.push("Password cannot include or equal Username.")
-    }
+function checkform() {
+   let error_flag = 0;
+   const isValid = validateInputs();
+   console.log("Errors:", isValid);
 
-    if (document.getElementById("pwd").value !==
-        document.getElementById("pwd2").value) {
-        error.push("Passwords must match.");
+   if (isValidlength > 0) {
+    error_flag = 1;
+        alert("Please fix errors!");
     }
-        return error;
+    else {
+        document.getElementById("submit").disabled = false;
+    }
 }
 
 function formInput(event) {
     event.preventDefault();
-    const errors = validateInputs();
-    const formData = new FormData(docuemnt.getElementById('signup'));
-    displayFormOutput(formData, errors);
+    const error = validateInputs();
+    const formData = new FormData(document.getElementById('signup'));
+    displayFormOutput(formData, error);
 }
 
 
-function displayFormOutput(formData,errors) {
+function displayFormOutput(formData,error) {
     const container = document.getElementById("outputformdata");
     container.innerHTML = "";
     const outputForm = document.createElement('form');
     outputForm.className = 'readonly-form';
 
-    formData.foreach((value, key) => {
+    formData.forEach((value, key) => {
         const input = document.createElement('input');
         input.type = 'text';
         input.name = key;
         input.value = value;
-        input.classname = 'readonly';
+        input.className = 'readonly';
         input.readOnly = true;
 
-        if (errors.some(error => error.toLowerCase().includes(key.toLowerCase()))) {
+        if (error.some(error => error.toLowerCase().includes(key.toLowerCase()))) {
             input.classList.add('error');
         }
             outputForm.appendChild(input);
             outputForm.appendChild(document.createElement('br'));
         });
 
-    errors.forEach(error => {
+    error.forEach(error => {
         const errorElement = document.createElement('p');
         errorElement.textContent = error;
         errorElement.className = 'error';
@@ -200,4 +228,4 @@ function displayFormOutput(formData,errors) {
         });
 
         container.appendChild(outputForm);
-    }
+}
