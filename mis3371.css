@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:#0ee832;
+  background-color:#F3F2EE;
   color: #1F2B5B;
   padding: 20 px;
   font-size: 35 px;
@@ -75,3 +75,17 @@ table.form {
 .column {
   width: 150px;
 }
+
+td.outputdata {
+    width: 70%;
+    opacity: 0.9;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:white;
+    padding: 2px;
+    border-spacing: 2px;
+    color:black;
+  }
+
+  input:invalid {
+    border: red solid 3px
+  }

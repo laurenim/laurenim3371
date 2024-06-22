@@ -21,31 +21,7 @@ function validateInputs() {
     if (!namePattern.test(document.getElementById("lName").value)) {
         error.push("Last name must be 1 to 30 characters; Letters, apostrophes, hyphens, and numbers 2 to 5")
     }
-
-    const middleInitialPattern = /^[A-Za-z]?$/;
-    if (!middleInitialPattern.test(document.getElementById("minitial").value)) {
-        error.push("Middle inital can only be 1 letter")
-    }
-
-    const dobPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/(19|20)|d{2}$/;
-    const dobValue = document.getElementById("dob").value;
-    if (dobPattern.test(dobValue)) {
-        const dobParts = dobValue.split("/");
-        const dobDate = new Date(dobParts[2], dobParts[0] - 1, dobParts[1]);
-        const currentDate = new Date();
-        const minDate = new Date(currentDate.getFullYear() - 120, currentDate.getMonth(), currentDate.getDate());
-        if (dobDate > currentDate || dobDate < minDate) {
-            error.push("Date of birth is out of range.");
-        }
-    } else {
-        error.push("Date of birth must follow MM/DD/YYYY format.");
-    }
-
-    const ssnPattern = /^\d{9}$/;
-    if (!ssnPattern.test(document.getElementById("ssn").value)) {
-        error.push("Social Secturity Number must follow XXXXXXXXX format (No Hyphens).");
-    }
-
+    
     const address1Pattern = /^.{2,30}$/;
     if (!address1Pattern.test(document.getElementById("address1").value)) {
         error.push("Address Line 1 must be 2 to 30 characters.");
@@ -82,12 +58,6 @@ function validateInputs() {
     const Unsure = document.getElementById("radio1").checked;
     if (!Yes && !No && !Unsure) {
         error.push("Please select one.")
-    }
-
-    const userIdPattern = /^(?!.*\s)[A-Za-z_-][A-Za-z0-9_-]{4,29}$/;
-    const userIdValue = document.getElementById("usr").value.toLowerCase();
-    if (!userIdPattern.test(userIdValue)) {
-        error.push("Username must be 5 to 30 characters; No spaces or special characters.");
     }
 
     const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/;
