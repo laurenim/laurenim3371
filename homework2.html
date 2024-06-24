@@ -4,9 +4,12 @@
     Name of File: homework2.html
     Date Created: 2024-18-06
     Date Updated: 2024-18-06
-    Version: 0.1
+    Version: 0.2
     Purpose: MIS3371 Homework 2 Medical Form
-    Note: asdf
+    note: I am so sorry for how insane my js file is. I really struggled with this homework.
+    I need help understanding where i've gone wrong in my validation process because, I feel like I understand
+    what I need to do well, I can't exectute it. any suggestions would be very helpful.
+    https://regex101.com/ also this website is super cool!
 -->
 <html>
     <head>
@@ -15,102 +18,110 @@
         <link rel="stylesheet" href="mis3371.css">
     </head>
     
-    <body onload="setup()">
-        <div class="h1">
+    <body>
+        <header class="h1">
             <img    id="logo" 
-                    src="hw1logo.png" 
+                    src="mis3371logo.png" 
                     alt="Houston Vitality Sports Medicine"
                     class="logo">
-            <h1 class="h1">Patient Intake Form</h1>
-        </div>
+            <h1>Patient Intake Form</h1>
+            </header>
         <div class="h1">
             <p>Today's Date:</p>
             <span id="today"></span>
         </div>
-    <form name="signup" id="signup" onreset="removedata1()" action="homework1-thankyou.html">
+
+    <div class="form">
+    <form name="signup" id="signup" action="mis3371-thankyou.html" method="post">
     <center>
-    <table class="form">
-        <tr class="form">
-            <th class="form">Please fill out all required fields and submit before your appointment.</th>
-        </tr>
-        <tr class="form">
+    <table>
+            <th>Please fill out all required fields and submit before your appointment.</th>
+        <tr>
             <td>
-            <label for="fname">First name:</label>
-            <input  type="text" 
-                    id="fname" 
-                    name="fname" 
-                    size="15" 
-                    maxlength="30"
-                    placeholder="Required"
-                    onblur="checkfname()"
-            required>
-            <label for="minitial"> MI:</label>
-            <input  type="text"
-                    id="minitial"
-                    name="minitial"
-                    size="1"
-                    maxlength="1"
-                    placeholder="M"
-            <label for="lname">Last name:</label>
-            <input  type="text"
-                    id="lname"
-                    name="lname" 
-                    size="15" 
-                    maxlength="30"
-                    placeholder="Required"
-            required>
-            <span id="name_message" class="error"></span>
+                <label for="fname">First name:</label>
+                <input  type="text" 
+                        id="fname" 
+                        name="fname" 
+                        size="15" 
+                        maxlength="30"
+                        placeholder="First Name"
+                        title="First name: letters, hyphens, apostrophes, and spaces only."
+                required><div id="fnameError" class="error"></div>
+                <label for="minitial"> MI:</label>
+                <input  type="text"
+                        id="minitial"
+                        name="minitial"
+                        size="1"
+                        maxlength="1"
+                        placeholder="M"
+                        title="Middle initial: 1 upper case letter.">
+                        <div id="minitialError" class="error"></div>
+                <label for="lname">Last name:</label>
+                <input  type="text"
+                        id="lname"
+                        name="lname" 
+                        size="15" 
+                        maxlength="30"
+                        placeholder="Required"
+                        title="Last name: letters, hyphens, apostrophes, numbers 2-5, and spaces only."
+                required><div id="lnameError" class="error"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
             <label for="dob">Date of Birth:</label>
-            <input  type="date" 
+            <input  type="text" 
                     id="dob"
-                    placeholder="Required"
+                    maxlength="10"
+                    placeholder = "MM/DD/YYYY"
+                    title="Date of Birth: MM/DD/YYYY format."
             required>
-            <span id="dob_message" class="error"></span>
+            <div id="dobError" class="error"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
             <label for="ssn">Social Security Number</label>
             <input  type="password"
                     id="ssn"
                     name="ssn"
                     placeholder="111223333"
+                    title="Social Security Number: 9 digits (no hyphens)."
             required>
-            <span id="ssn_message" class="error"></span>
+            <div id="ssnError" class="error"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
-            <label for = "address1"> Address Line 1: </fname>
+            <label for = "address1"> Address Line 1: </label>
             <input  type = "text"
                     name = "Address"
-                    id= "address"
+                    id= "address1"
                     maxlength="30"
                     placeholder = "1010 Shasta Rd"
+                    title="Address Line 1: letters, hyphens, apostrophes, and spaces only."
             required>
-            <span id="address1_message" class="error"></span>
-            <label for="address2">Address Line 2:</fname>
+            <div id="address1Error" class="error"></div>
+            <label for="address2">Address Line 2:</label>
             <input type="text" 
                     name="Address" 
                     id="address2"
                     maxlength="30" 
                     placeholder="Apt #555"
-            <span id="address2_message" class="error"></span>
+                    title="Address Line 2 (optional): letters, hyphens, apostrophes, and spaces only.">
+            <div id="address2Error" class="error"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
             <label for="city"> City: </label>
             <input  type="text"
                     name="City"
                     id="city"
                     size="10"
+                    title="City: letters, hyphens, apostrophes, and spaces only."
             required>
-            <label for="state"> State:</label>
+            <label>State:</label>
             <select name="state" >
             <option value="AL">Select One</option>
                 <option value="AL">Alabama</option>
@@ -166,20 +177,21 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
             </select>
-            <label for="zipCode">ZipCode:</label>
+            <label for="zip">ZipCode:</label>
             <input  type="text"
                     name="zipcode"
                     id="zip"
                     size=5
+                    title="Zip Code: 5 digits only."
             required>
-            <span id="city_message" class="error"></span>
-            <span id="state_message"></span>
-            <span id="zip_message" class="error"></span>
+            <div id="cityError" class="error"></div>
+            <div id="stateError"></div>
+            <div id="zipError" class="error"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
-            <label for="radio1">Are you a new patient?</label>
+            <label for="one">Are you a new patient?</label>
         <br>
             <input  type="radio"
                     name="radio1"
@@ -187,132 +199,134 @@
         <br>
             <input  type="radio"
                     name="radio1"
-                    id="one">No
+                    id="two">No
         <br>
             <input  type="radio"
                     name="radio1"
-                    id="one">Unsure
-            <span id="new_message"></span>
+                    id="three">Unsure
+            <div id="new_message"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
             <label for="phone">Phone Number:</label>
             <input  type="tel"
                     id="phone"
                     name="phone"
-                    size="12"
-                    placeholder="111-111-1111"
+                    size="10"
+                    placeholder="1111111111"
+                    title="Phone Number: 10 digits only."
             required>
-            <span id="phone_message" class="error"></span>
+            <div id="phoneError" class="error"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
             <label  for="email">Email:</label>
             <input  type="email"
                     id="email"
                     name="email"
-                    pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+[A-Za-z]{2,4}%"
                     placeholder="cooldude@hotmail.com"
+                    title="Email: user@domain.dlt format only."
             required>
-            <span id="email_message" class="error"></span>
+            <div id="emailError" class="error"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
-            <label for="radio2">Please select your gender:</label>
+            <label for="four">Please select your gender:</label>
         <br>
             <input  type="radio"
                     name="radio2"
-                    id="one">Male
+                    id="four">Male
         <br>
             <input  type="radio"
                     name="radio2"
-                    id="one">Female
-            <span id="gender_message"></span>
+                    id="five">Female
+            <div id="gender_message"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
-            <label for="radio">Have you tested positive for Covid-19 in the past 10 days?</label>
+            <label for="six">Have you tested positive for Covid-19 in the past 10 days?</label>
         <br>
             <input  type="radio"
                     name="radio3"
-                    id="one">Yes
+                    id="six">Yes
         <br>
             <input  type="radio"
                     name="radio3"
-                    id="one">No
+                    id="seven">No
         <br>
             <input type="radio"
                     name="radio3"
-                    id="one">Unsure
-            <span id="covid_message"></span>
+                    id="eight">Unsure
+            <div id="covidError"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
-            <label for="textArea" >Please describe your symptoms:</label>
+            <label>Please describe your symptoms:</label>
         <br>
             <textarea   cols="50" 
                         rows="3"
-                        name="textArea"
+                        name="textarea"
+                        title="Describe your symptoms."
                         required>
             </textarea>
-            <span id="text_message"></span>
+            <div id="textError"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
-            <label for="check">Do you or any of your immediate family suffer from:</label>
+            <label for="diabieties">Do you or any of your immediate family suffer from:</label>
         <br>
             <input  type="checkbox"
                     name="check"
-                    id="test"> Diabieties
+                    id="diabieties"> Diabieties
             <input  type="checkbox"
                     name="check"
-                    id="test"> Autoimune Disease
+                    id="autoimune"> Autoimune Disease
             <input  type="checkbox"
                     name="check"
-                    id="test"> HIV/AIDS
+                    id="hiv"> HIV/AIDS
         <br>
             <input  type="checkbox"
                     name="check"
-                    id="test"> Alzhiemer's
+                    id="alzhiemers"> Alzhiemer's
             <input  type="checkbox"
                     name="check"
-                    id="test"> Liver Disease
+                    id="liver"> Liver Disease
             <input  type="checkbox"
                     name="check"
-                    id="test"> Kidney Disease
+                    id="kidney"> Kidney Disease
         <br>
             <input  type="checkbox"
                     name="check"
-                    id="test"> Cardiovascular Disease
+                    id="cardiovascular"> Cardiovascular Disease
             <input  type="checkbox"
                     name="check"
-                    id="test"> Cataracts
+                    id="cataracts"> Cataracts
             <input  type="checkbox"
                     name="check"
-                    id="test"> Cancer
+                    id="cancer"> Cancer
         <br>
             <label>If yes:</label>
-            <input  type="specify"
+            <input  type="text"
                     name="text"
                     id="text"
                     placeholder="List type"
                     maxlength="50">
-            <span id="familyh_message"></span>
+            <div id="familyhError"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
             <label for="slider">Rate your pain on a scale of 1 to 10 (1 being the lowest)</label>
             1<input type="range"
                     name="slider" 
                     id="slider"
-            required>10&nbsp;
+                    title="Pain rating">10&nbsp;
             <span id="rangedisplay"></span>%
         <script>
             var slider = document.getElementById("slider");
@@ -323,59 +337,92 @@
                 output.innerHTML = this.value;
             }
         </script>
-            <span id="slider_message"></span>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
             <label for="usr">Username:</label>
             <input  type="text"
                     name="usr" 
-                    id="usr" 
+                    id="usr"
                     placeholder="8 char, 1 number"
+                    title="Username: 8 char, 1 number; no spaces, cannot start with number, no special characters."
             required>
-            <span id="usr_message" class="error"></span>
+            <div id="usrError" class="error"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
             <label for="pwd">Password:</label>
             <input  type="password" 
                     name="pwd" 
-                    id="pwd" 
-                    placeholder="8 char, 1 number, 1 special char" 
+                    id="pwd"
+                    placeholder="8 char, 1 number, 1 special char"
+                    onkeyup="check()"
+                    title="Password: 8 char, 1 upper case, 1 number, 1 special char."
             required>
-            <span id="pwd_message"></span>
+            <div id="pwdError" class="error"></div>
             <label for="pwd2">Verify Password:</label>
             <input  type="password"
-                    name="pwd" 
+                    name="pwd2" 
                     id="pwd2"
+                    onkeyup="check()"
+                    title="Password Verification: Must match password 1"
             required>
-            <span id="pwd2_message" class="error"></span>
+            <div id="pwd2Error" class="error"></div>
             </td>
         </tr>
-        <tr class="form">
+        <tr>
             <td>
-            <input type="submit" 
-                    value="Submit"
-                    onclick="return validateInputs()">
+            <input type="submit"
+                    value="Submit">
             <input type="reset" 
                     value="Reset">
-            <input type="button"
-                    name="review"
-                    value="Review"
-                    onclick="getdata1()">
             </td>
+        </tr>
+        <tr>
+            <td id="reviewModal" class="modal">
+            <div class="modal-content">
+                <span class="closeReview"></span>
+                <dl id="modal-info"></dl>
+                <div class="modal-buttons">
+                    <button id="confirmReview" name="confirmReview-btn">Confirm</button>
+                    <button id="cancelReview" name="cancelReview-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="errorModal" class="modal">
+
+            <div class="error-modal-content">
+                <span class="closeError"></span>
+                <ul id="errorList"></ul>
+                <div class="error-modal-buttons">
+                    <button id="cancelError" name="closeError-btn">Close</button>
+                </div>
+            </div>
+        </div>
+        </td>
         </tr>
     </table>
     </center>
     </form>
+    </div>
 
-        <p id="outputformdata"></p>    
+    <p id="displayFormOutput"></p>
 
+    <script src="homework2.js"></script>
+
+   <script>
+        const today = new Date();
+        let text = today.toLocaleDateString();
+        document.getElementById("today").innerHTML = text;
+    </script>
+
+</body>
     <footer>
         <div class="footerh">
-            <img    src="hw1logo.png"
+            <img    src="mis3371logo.png"
                     alt="Houston Vitality Sports Medicine"
                     class="logo">
             <div class="h1">
@@ -403,12 +450,4 @@
         </div>
     </footer>
 
-    <script src="homework2.js"></script>
-    <script>
-       const today = new Date();
-       let text = today.toLocaleDateString();
-        document.getElementById("today").innerHTML = text;
-    </script>
-
-</body>
 </html>

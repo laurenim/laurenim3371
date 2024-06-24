@@ -1,14 +1,16 @@
-//Name: Lauren Morales
-//Name of File: homework2.html
-//Date Created: 2024-18-06
-//Date Updated: 2024-18-06
-//Version: 0.2
-//Purpose: MIS3371 CSS for Homework 2 Medical Form
+/*Name: Lauren Morales
+Name of File: homework2.html
+Date Created: 2024-18-06
+Date Updated: 2024-23-06
+Version: 0.2
+Purpose: MIS3371 CSS for Homework 2 Medical Form*/
 
 .body {
   background-color: #a8afc9;
   color: #F3F2EE;
+  font-family: "Times New Roman", Times, serif;
 }
+
 .h1 {
   display: flex;
   align-items: center;
@@ -34,16 +36,10 @@
     margin-left: 20px;
 }
 
-th, td {
-    background-color: #F3F2EE;
-    color: #1F2B5B;
-    text-align: left;
-    padding: 5px;
-}
-
-table.form {
-    margin: 20px auto;
-    border-collapse: collapse;
+td {
+    background-color: #f3f2ee;
+  color: #1F2B5B;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .footerh {
@@ -80,17 +76,17 @@ table.output, tr.output, td.output {
     width: 70%;
     opacity: 0.9;
     font-family: "Times New Roman", Times, serif;
-    background-color:#F3F2EE;
+    background-color:greenyellow;
     padding: 2px;
     border-spacing: 2px;
     color:#1F2B5B;
   }
 
-  td.outputdata {
+td.outputdata {
     width: 70%;
     opacity: 0.9;
     font-family: "Times New Roman", Times, serif;
-    background-color:#F3F2EE;
+    background-color:orange;
     padding: 2px;
     border-spacing: 2px;
     color:#1F2B5B;
@@ -100,7 +96,25 @@ input:invalid {
     border: red solid 3px
 }
 
-.error {
-    color: orange;
-    font-size: 1
+.error-message {
+    color: red;
+    visibility: hidden;
+    height: 0; /* No space when not active */
+    font-size: 0.8em;
+    }
+
+    /* When active, the error message takes up space and is visible */
+.error-message.active {
+    visibility: visible;
+    height: auto; /* Allow space for one line of text */
+    width: auto;
+}
+.readonly-form input.readonly{
+    background-color: #f3f2ee;
+    padding: 2px;
+    margin: 5 px 0;
+}
+
+.readonly-form input.error{
+    border-color: red;
 }
