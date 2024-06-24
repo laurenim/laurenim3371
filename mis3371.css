@@ -99,14 +99,13 @@ input:invalid {
 .error-message {
     color: red;
     visibility: hidden;
-    height: 0; /* No space when not active */
+    height: 0; 
     font-size: 0.8em;
     }
 
-    /* When active, the error message takes up space and is visible */
 .error-message.active {
     visibility: visible;
-    height: auto; /* Allow space for one line of text */
+    height: auto;
     width: auto;
 }
 .readonly-form input.readonly{
