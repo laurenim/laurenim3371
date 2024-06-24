@@ -5,8 +5,7 @@ Date created: 06/16/2024
 Date Updated: 06/23/2024
 version: 0.1
 Purpose: Redisplay/validate data from a form
-Notes: Again... sorry for how messy this is. i wanted to keep stuff that (probably) doesnt work in here though because
-i wanted to look back at it and know if i was ever on the right track.
+Notes: there are like two or three versions of the js code that are notes now. it doesnt all go together.
 */
 
 
@@ -300,10 +299,7 @@ function validatepwd2() {
 
 document.getElementById("pwd2").addEventListener("blur", validatepwd2);
 
-/* Note: Including my (many) attempts at coding validation. 
-If I was on the right track with any of these please let me know.
-I just could not get any of these to actually create error messages or pop ups 
-and i dont know why. Did I like my JS into my HTML wrong somehow??! pleaseee let me know.*/
+/* Note: i tried so many ways to validate, but i couldnt get any of them to work*/
 
 function validateInputs() {
     let error = [];
