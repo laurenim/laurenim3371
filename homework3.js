@@ -185,7 +185,7 @@ function validateemail() {
 const emailInput = document.getElementById("email");
 const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 if (!emailPattern.test(emailInput.value)) {
-    document.getElementById("emailError").innerHTML = ("Invalid: Use email@domain.dlt format only.");
+    document.getElementById("emailError").innerHTML = "Invalid: Use email@domain.dlt format only.";
     return false;
 } else {
     document.getElementById("emailError").innerHTML = "";
