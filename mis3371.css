@@ -3,117 +3,130 @@ Name of File: homework2.html
 Date Created: 2024-18-06
 Date Updated: 2024-23-06
 Version: 0.2
-Purpose: MIS3371 CSS for Homework 2 Medical Form*/
-
-.body {
-  background-color: #a8afc9;
-  color: #F3F2EE;
-  font-family: "Times New Roman", Times, serif;
-}
+Purpose: MIS3371 CSS for Homework Medical Form*/
 
 .h1 {
-  display: flex;
+  display: center;
+  text-align: center;
   align-items: center;
-  justify-content: center;
   background-color:#F3F2EE;
   color: #1F2B5B;
   padding: 20 px;
   font-size: 35 px;
+  font-family: "Be Vietnam", sans-serif;
 }
+
+.logo {
+  width: 200px;
+  height: auto;
+  float: center;
+  margin-bottom: auto;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .date {
   display: flex;
   float: right;
 }
 
-.form {
-    background-color: #F3F2EE;
-    color: #1F2B5B;
-    text-align: left;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 15px;
-    padding: 15px;
-    margin-top: 20px;
-    margin-left: 20px;
+.body {
+  background-image: url(houstonskyline.jpg);
+  margin-top 10;
+  padding:0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100 vh;
+  justify-content: flex-start;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: #F3F2EE;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.form-container,
+.displayinputs {
+  background-image: url(houstonskyline.jpg);
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+}
+
+.form-container
+form {
+  background-color: ##D3D3D3; 
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: "Times New Roman", Times, serif;
+}
+
+table {
+  display: flex;
+  flex-direction: column;
+  table-layout: fixed;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  background-color: #D3D3D3;
+  opacity: 0.95;
+}
+
+tr{
+  text-align: center;
+  width: 100%;
 }
 
 td {
-    background-color: #f3f2ee;
-  color: #1F2B5B;
-  font-family: "Times New Roman", Times, serif;
+  padding: 5px;
+  text-align: center;
+  justify-items: left;
 }
 
 .footerh {
     background-color: #F3F2EE;
     color: #1F2B5B;
-    display: flex;
-    justify-content: center;
+    display: center;
     text-align: center;
+    align-items: center;
     font-family: "Be Vietnam", sans-serif;
     font-size: 15px;
+    width: 100%
 }
 
 .footer {
   background-color: #F3F2EE;
   color: #1F2B5B;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   text-align: center;
   font-family: "Times New Roman", Times, serif;
   font-size: 15px;
+  padding: 20px 0;
 }
 
-.logo {
-  width: 200px;
-  height: auto;
-  margin-right: 150px;
-}
-
-.column {
-  width: 150px;
-}
-
-table.output, tr.output, td.output {
-    width: 70%;
-    opacity: 0.9;
-    font-family: "Times New Roman", Times, serif;
-    background-color:greenyellow;
-    padding: 2px;
-    border-spacing: 2px;
-    color:#1F2B5B;
+table.output,
+  table.output,
+  tr.output{
+      width: 510px;
+      background-color: #D3D3D3;
+      opacity: 0.95;  
+      color: #1F2B5B;
+      margin: auto; 
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center; 
   }
 
-td.outputdata {
-    width: 70%;
-    opacity: 0.9;
-    font-family: "Times New Roman", Times, serif;
-    background-color:orange;
-    padding: 2px;
-    border-spacing: 2px;
-    color:#1F2B5B;
+.error {
+  color:darkred;
 }
 
-input:invalid {
-    border: red solid 3px
-}
-
-.error-message {
-    color: red;
-    visibility: hidden;
-    height: 0; 
-    font-size: 0.8em;
-    }
-
-.error-message.active {
-    visibility: visible;
-    height: auto;
-    width: auto;
-}
-.readonly-form input.readonly{
-    background-color: #f3f2ee;
-    padding: 2px;
-    margin: 5 px 0;
-}
-
-.readonly-form input.error{
-    border-color: red;
+#submit {
+  display: none;
 }

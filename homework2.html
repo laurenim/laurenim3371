@@ -17,96 +17,122 @@
     
     <body>
         <header class="h1">
-            <img    id="logo" 
+            <table class="h1"><tr>
+            <td><img    id="logo" 
                     src="mis3371logo.png" 
                     alt="Houston Vitality Sports Medicine"
-                    class="logo">
-            <h1>Patient Intake Form</h1>
-            </header>
-        <div class="h1">
-            <p>Today's Date:</p>
-            <span id="today"></span>
-        </div>
+                    class="logo"></td>
+            <td><h1>Patient Intake Form</h1></td></tr>
+            <br>
+            <tr><td></td><p class="h1">Today's Date: <span id="today"></p></span></td></tr>
+        </table>
+        </header>
 
-    <div class="form">
-    <form name="signup" id="signup" action="mis3371-thankyou.html" method="post">
-    <center>
+    <form name="signup" 
+            id="signup" 
+            action="mis3371-thankyou.html"
+            onreset="removedata1()">
+    <div class="form-container">
     <table>
             <th>Please fill out all required fields and submit before your appointment.</th>
+        
         <tr>
             <td>
+                <br>
                 <label for="fname">First name:</label>
                 <input  type="text" 
                         id="fname" 
-                        name="fname" 
+                        name="First Name" 
                         size="15" 
                         maxlength="30"
                         placeholder="First Name"
                         title="First name: letters, hyphens, apostrophes, and spaces only."
-                required><div id="fnameError" class="error"></div>
+                        onblur="validatefname()"
+                required>
+
                 <label for="minitial"> MI:</label>
                 <input  type="text"
                         id="minitial"
-                        name="minitial"
+                        name="Middle Initial"
                         size="1"
                         maxlength="1"
                         placeholder="M"
-                        title="Middle initial: 1 upper case letter.">
-                        <div id="minitialError" class="error"></div>
+                        title="Middle initial: 1 letter."
+                        onblur="validateminital()">
+        
                 <label for="lname">Last name:</label>
                 <input  type="text"
                         id="lname"
-                        name="lname" 
+                        name="Last Name" 
                         size="15" 
                         maxlength="30"
                         placeholder="Required"
                         title="Last name: letters, hyphens, apostrophes, numbers 2-5, and spaces only."
-                required><div id="lnameError" class="error"></div>
+                        onblur="validatelname()"
+                required>
+                <br>
+                <span id="fnameError" class="error"></span><br>
+                <span id="minitalError" class="error"></span><br>
+                <span id="lnameError" class="error"></span>
             </td>
         </tr>
+        
         <tr>
             <td>
             <label for="dob">Date of Birth:</label>
-            <input  type="text" 
+            <input  type="date" 
                     id="dob"
+                    name="Date of Birth"
                     maxlength="10"
                     placeholder = "MM/DD/YYYY"
                     title="Date of Birth: MM/DD/YYYY format."
+                    onblur="validatedob()"
             required>
-            <div id="dobError" class="error"></div>
+            <br>
+            <span id="dobError" class="error"></span>
             </td>
         </tr>
+
         <tr>
             <td>
             <label for="ssn">Social Security Number</label>
             <input  type="password"
                     id="ssn"
-                    name="ssn"
-                    placeholder="111223333"
-                    title="Social Security Number: 9 digits (no hyphens)."
+                    name="SSN"
+                    placeholder="111-22-3333"
+                    title="Social Security Number: 9 digits with hyphens."
+                    onblur="validatessn()"
             required>
-            <div id="ssnError" class="error"></div>
+            <br>
+            <span id="ssnError" class="error"></span>
             </td>
         </tr>
+
         <tr>
             <td>
             <label for = "address1"> Address Line 1: </label>
             <input  type = "text"
-                    name = "Address"
+                    name = "Address 1"
                     id= "address1"
                     maxlength="30"
                     placeholder = "1010 Shasta Rd"
                     title="Address Line 1: letters, hyphens, apostrophes, and spaces only."
+                    onblur="validateaddress1()"
             required>
-            <div id="address1Error" class="error"></div>
+            <br>
+            <span id="address1Error" class="error"></span>
+            <br>
             <label for="address2">Address Line 2:</label>
             <input type="text" 
                     name="Address" 
                     id="address2"
+                    name="Address 2"
                     maxlength="30" 
                     placeholder="Apt #555"
-                    title="Address Line 2 (optional): letters, hyphens, apostrophes, and spaces only.">
-            <div id="address2Error" class="error"></div>
+                    title="Address Line 2 (optional): letters, hyphens, apostrophes, and spaces only."
+                    onblur="validateaddress2()">
+            <br>        
+            <span id="address2Error" class="error"></span>
             </td>
         </tr>
         <tr>
@@ -117,10 +143,12 @@
                     id="city"
                     size="10"
                     title="City: letters, hyphens, apostrophes, and spaces only."
+                    onblur="validatecity()"
             required>
             <label>State:</label>
-            <select name="state" >
-            <option value="AL">Select One</option>
+            <select name="State" 
+            required>
+            <option value="">Select One</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -176,32 +204,38 @@
             </select>
             <label for="zip">ZipCode:</label>
             <input  type="text"
-                    name="zipcode"
+                    name="Zip Code"
                     id="zip"
+                    min="5"
                     size=5
+                    pattern="{5}"
                     title="Zip Code: 5 digits only."
+                    onblur="validatezip()"
             required>
-            <div id="cityError" class="error"></div>
-            <div id="stateError"></div>
-            <div id="zipError" class="error"></div>
+            <br>
+            <span id="cityError" class="error"></span>&nbsp;
+            <span id="zipError" class="error"></span>
             </td>
         </tr>
         <tr>
             <td>
             <label for="one">Are you a new patient?</label>
-        <br>
+            &nbsp;
             <input  type="radio"
-                    name="radio1"
-                    id="one">Yes
-        <br>
+                    name="newpatient"
+                    id="one"
+                    value="Yes"
+                    required>Yes
+            &nbsp;
             <input  type="radio"
-                    name="radio1"
-                    id="two">No
-        <br>
+                    name="newpatient"
+                    id="two"
+                    value="No">No
+            &nbsp;
             <input  type="radio"
-                    name="radio1"
-                    id="three">Unsure
-            <div id="new_message"></div>
+                    name="newpatient"
+                    id="three"
+                    value="Unsure">Unsure
             </td>
         </tr>
         <tr>
@@ -209,12 +243,14 @@
             <label for="phone">Phone Number:</label>
             <input  type="tel"
                     id="phone"
-                    name="phone"
-                    size="10"
-                    placeholder="1111111111"
-                    title="Phone Number: 10 digits only."
+                    name="Phone"
+                    maxlength="12"
+                    placeholder="111-111-1111"
+                    title="Phone Number: 10 digits with hyphens."
+                    onblur="validatephone()"
             required>
-            <div id="phoneError" class="error"></div>
+            <br>
+            <span id="phoneError" class="error"></span>
             </td>
         </tr>
         <tr>
@@ -222,43 +258,51 @@
             <label  for="email">Email:</label>
             <input  type="email"
                     id="email"
-                    name="email"
+                    name="Email"
                     placeholder="cooldude@hotmail.com"
                     title="Email: user@domain.dlt format only."
+                    onblur="validateemail()"
             required>
-            <div id="emailError" class="error"></div>
+            <br>
+            <span id="emailError" class="error"></span>
             </td>
         </tr>
         <tr>
             <td>
-            <label for="four">Please select your gender:</label>
+            <label for="genderq">Please select your gender:</label>
         <br>
             <input  type="radio"
-                    name="radio2"
-                    id="four">Male
-        <br>
+                    name="Gender"
+                    id="male"
+                    value="Male"
+                    required>Male
+        &nbsp;
             <input  type="radio"
-                    name="radio2"
-                    id="five">Female
-            <div id="gender_message"></div>
+                    name="Gender"
+                    id="female"
+                    value="Female">Female
             </td>
         </tr>
         <tr>
             <td>
-            <label for="six">Have you tested positive for Covid-19 in the past 10 days?</label>
+            <label for="covid">Have you tested positive for Covid-19 in the past 10 days?</label>
         <br>
             <input  type="radio"
-                    name="radio3"
-                    id="six">Yes
-        <br>
+                    name="Covid"
+                    id="cyes"
+                    value="Yes"
+                    required>Yes
+        &nbsp;
             <input  type="radio"
-                    name="radio3"
-                    id="seven">No
-        <br>
+                    name="Covid"
+                    id="cno"
+                    value="No">No
+        &nbsp;
             <input type="radio"
-                    name="radio3"
-                    id="eight">Unsure
-            <div id="covidError"></div>
+                    name="Covid"
+                    id="cunsure"
+                    value="Unsure">Unsure
+            <span id="covidError" class="error"></span>
             </td>
         </tr>
         <tr>
@@ -267,11 +311,11 @@
         <br>
             <textarea   cols="50" 
                         rows="3"
-                        name="textarea"
+                        name="Symptoms"
                         title="Describe your symptoms."
                         required>
             </textarea>
-            <div id="textError"></div>
+            <span id="textError"></span>
             </td>
         </tr>
         <tr>
@@ -281,9 +325,11 @@
             <input  type="checkbox"
                     name="check"
                     id="diabieties"> Diabieties
+                    &nbsp;
             <input  type="checkbox"
                     name="check"
                     id="autoimune"> Autoimune Disease
+                    &nbsp;
             <input  type="checkbox"
                     name="check"
                     id="hiv"> HIV/AIDS
@@ -291,9 +337,11 @@
             <input  type="checkbox"
                     name="check"
                     id="alzhiemers"> Alzhiemer's
+                    &nbsp;
             <input  type="checkbox"
                     name="check"
                     id="liver"> Liver Disease
+                    &nbsp;
             <input  type="checkbox"
                     name="check"
                     id="kidney"> Kidney Disease
@@ -301,9 +349,11 @@
             <input  type="checkbox"
                     name="check"
                     id="cardiovascular"> Cardiovascular Disease
+                    &nbsp;
             <input  type="checkbox"
                     name="check"
                     id="cataracts"> Cataracts
+                    &nbsp;
             <input  type="checkbox"
                     name="check"
                     id="cancer"> Cancer
@@ -314,117 +364,106 @@
                     id="text"
                     placeholder="List type"
                     maxlength="50">
-            <div id="familyhError"></div>
             </td>
         </tr>
         <tr>
             <td>
             <label for="slider">Rate your pain on a scale of 1 to 10 (1 being the lowest)</label>
-            1<input type="range"
-                    name="slider" 
+            <br>
+            0&nbsp;<input type="range"
+                    name="Slider" 
                     id="slider"
-                    title="Pain rating">10&nbsp;
-            <span id="rangedisplay"></span>%
-        <script>
-            var slider = document.getElementById("slider");
-            var output = document.getElementById("rangedisplay");
-            output.innerHTML = slider.value;
-
-            slider.oninput = function() {
-                output.innerHTML = this.value;
-            }
-        </script>
+                    title="Pain rating"
+                    min="0"
+                    max="10">10&nbsp;
+            <br>
+            <span id="rangedisplay"></span>
             </td>
         </tr>
+
         <tr>
             <td>
             <label for="usr">Username:</label>
             <input  type="text"
-                    name="usr" 
+                    name="Username" 
                     id="usr"
+                    maxlength="30"
                     placeholder="8 char, 1 number"
                     title="Username: 8 char, 1 number; no spaces, cannot start with number, no special characters."
-            required>
-            <div id="usrError" class="error"></div>
+                    onblur="validateusr()"
+                required>
+                <br>
+            <span id="usrError" class="error"></span>
             </td>
         </tr>
+
         <tr>
             <td>
             <label for="pwd">Password:</label>
             <input  type="password" 
-                    name="pwd" 
+                    name="Password" 
                     id="pwd"
-                    placeholder="8 char, 1 number, 1 special char"
-                    onkeyup="check()"
+                    minlength="8"
+                    placeholder="8 char, 1 uppercase, 1 number, 1 special char"
                     title="Password: 8 char, 1 upper case, 1 number, 1 special char."
+                    onfocus="validatepwd()"
+                    onblur="validatepwd()"
             required>
-            <div id="pwdError" class="error"></div>
+            <span id="pwdError" class="error"></span>
+            <br>
             <label for="pwd2">Verify Password:</label>
             <input  type="password"
-                    name="pwd2" 
+                    name="Verify Password" 
                     id="pwd2"
-                    onkeyup="check()"
-                    title="Password Verification: Must match password 1"
+                    placeholder="Must match password 1"
+                    title="Password Verification: Must match Password"
+                    onblur="validatepwd2()"
             required>
-            <div id="pwd2Error" class="error"></div>
+            <span id="pwd2Error" class="error"></span>
             </td>
         </tr>
+
         <tr>
             <td>
+            <input type="button"
+                    value="Review"
+                    name="review"
+                    id="review"
+                    onclick="getdata1()">
+            <input type="button"
+                    value="Validate"
+                    name="validate"
+                    id="validate"
+                    onclick="validateform()">
             <input type="submit"
-                    value="Submit">
+                    value="Submit"
+                    name="submit"
+                    id="submit">
             <input type="reset" 
-                    value="Reset">
+                    value="Reset"
+                    name="reset"
+                    id="reset">
             </td>
         </tr>
-        <tr>
-            <td id="reviewModal" class="modal">
-            <div class="modal-content">
-                <span class="closeReview"></span>
-                <dl id="modal-info"></dl>
-                <div class="modal-buttons">
-                    <button id="confirmReview" name="confirmReview-btn">Confirm</button>
-                    <button id="cancelReview" name="cancelReview-btn">Cancel</button>
-                </div>
-            </div>
-        </div>
 
-        <div id="errorModal" class="modal">
-
-            <div class="error-modal-content">
-                <span class="closeError"></span>
-                <ul id="errorList"></ul>
-                <div class="error-modal-buttons">
-                    <button id="cancelError" name="closeError-btn">Close</button>
-                </div>
-            </div>
-        </div>
-        </td>
-        </tr>
     </table>
-    </center>
+    <p id="displayinputs" class="table.output"></p>
     </form>
     </div>
-
-    <p id="displayFormOutput"></p>
-
-    <script src="homework2.js"></script>
-<!-- for some reason, the script for todays day works here, but if i put it in the js it stops working. idk why.-->
-   <script>
-        const today = new Date();
-        let text = today.toLocaleDateString();
-        document.getElementById("today").innerHTML = text;
-    </script>
-
+    <script src="homework2.js"></script>    
 </body>
     <footer>
-        <div class="footerh">
+        <table class="footerh">
+            <td>
             <img    src="mis3371logo.png"
                     alt="Houston Vitality Sports Medicine"
-                    class="logo">
-            <div class="h1">
-                <p>Contact us</p>
-            </div>
+                    class="logo"> </td>
+            <td><div class="h1">
+                <br>
+                <br>
+                <br>
+                <h1>Contact us</h1></div>
+            </td></table>
         </div>
         <div class="footer">
         <div class="column">
