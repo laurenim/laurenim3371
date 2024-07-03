@@ -385,9 +385,9 @@ function setCookie(cname, cvalue, exdays) {
     }
   }
 
-  function createNewUsername(user) {
+  function createNewUsername(fname, lname) {
     let newUserDiv = document.createElement("div");
-    newUserDiv.innerHTML = "<p> Not ${fname} + ${lname}? Click <a href='#' onclick='startnewUser()'> here </a> to start as a NEW user.</a></p>";
+    newUserDiv.innerHTML = "<p> Not" + fname + "" + lname + "? Click <a href='#' onclick='startnewUser()'> here </a> to start as a NEW user.</a></p>";
     document.body.appendChild(newUserDiv);
   }
 
@@ -396,3 +396,5 @@ function setCookie(cname, cvalue, exdays) {
     deleteCookie ("lname");
     location.reload();
   }
+
+  window.onload = checkCookie;
