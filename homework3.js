@@ -32,6 +32,17 @@ const today = new Date();
 let text = today.toLocaleDateString();
 document.getElementById("today").innerHTML = text;
 
+window.onscroll = function() {whenScroll()};
+    var header = document.getElementById("header");
+    var sticky = header.offsetTop;
+
+function whenScroll() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
 
 let slider = document.getElementById("slider");
 let output = document.getElementById("rangedisplay");
@@ -327,3 +338,61 @@ if (formoutput.length > 0) {
 function removeReview() {
 document.getElementById("displayinputs").innerHTML = "";
 }
+
+
+
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+  
+  function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  function deleteCookie() {
+    document.cookie = cname + "=; expires= Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+  }
+  
+  function checkCookie() {
+    let fname = getCookie("fname");
+    let lname = getCookie("lname");
+    if (fname != "" && lname != "") {
+      alert("Welcome back " + fname + "" + lname + "!");
+      createNewUsername (fname, lname);
+    } else {
+      fname = prompt("Welcome New User!", "");
+      if (fname != "" && fname != null && lname !="" && lnmae !=null) {
+        let rememberMe = document.getElementById("rememberMe").checked;
+        if (rememberMe) {
+           setCookie ("fname", fname, 2);
+           setCookie ("lname", lname, 2);
+        }
+      }
+    }
+  }
+
+  function createNewUsername(user) {
+    let newUserDiv = document.createElement("div");
+    newUserDiv.innerHTML = "<p> Not ${fname} + ${lname}? Click <a href='#' onclick='startnewUser()'> here </a> to start as a NEW user.</a></p>";
+    document.body.appendChild(newUserDiv);
+  }
+
+  function startNewUser() {
+    deleteCookie ("fname");
+    deleteCookie ("lname");
+    location.reload();
+  }

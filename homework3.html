@@ -15,17 +15,17 @@
         <link rel="stylesheet" href="mis3371.css">
     </head>
     
-    <body>
-        <header class="h1">
+    <body onload="checkCookie()">
+        <header id="header" class="header">
             <table class="h1"><tr>
             <td><img    id="logo" 
                     src="mis3371logo.png" 
                     alt="Houston Vitality Sports Medicine"
                     class="logo"></td>
             <td><h1>Patient Intake Form</h1></td></tr>
-            <br>
-            <tr><td></td><p class="h1">Today's Date: <span id="today"></p></span></td></tr>
-        </table>
+            </table>
+            <p class="h1">Today's Date: <span id="today"></span></p>
+            <p class="h1"><br></p>
         </header>
 
     <form name="signup" 
@@ -445,45 +445,64 @@
                     id="reset">
             </td>
         </tr>
+        <tr>
+            <td>
+                <p>Remember Me? (Cookies)
+                <input type="checkbox"
+                        id="rememberMe"
+                        name="Remember Me?"
+                        title="Remember Me?">
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td><p>We are proud partners of Airrosti!</p></td>
+        </tr>
 
     </table>
     <p id="displayinputs" class="table.output"></p>
     </form>
+
+    <iframe src="https://www.airrosti.com/" class="iframe"></iframe>
+
     </div>
+
+    <footer>
+        <table>
+            <tr class="footerh">
+                <td>
+                    <img    src="mis3371logo.png"
+                            alt="Houston Vitality Sports Medicine"
+                            class="logo"></td>
+                    <td></td>
+                    <td>
+                        <h1>Contact us</h1></div>
+                </td>
+            </tr>
+            <tr class="footerh">
+                <td>
+                    <p><strong>Phone:</strong>(111) 111-1111</p>
+                    <p><strong>Address:</strong>555 Rockets Lane<br>Houston, TX 77044</p>
+                    <p><strong>PO Box:</strong>9876</p>
+                </td>
+                <td></td>
+                <td>
+                    <p><strong>Email:</strong>htownvitality@sportsmed.com</p>
+                        <a href="https://www.instagram.com/"
+                            target="_blank">
+                        <input type="button"
+                                value="Vitality Instagram"></a>
+                    <p><strong>Website</strong></p>
+                    <a href="https://uh.edu/" 
+                            target="_blank" >
+                    <input type="button" 
+                            value="Vitality Sports Medicine" ></a>
+                </td>
+            </tr>
+        </table>
+    </footer>
+
     <script src="homework3.js"></script>    
 </body>
-    <footer>
-        <table class="footerh">
-            <td>
-            <img    src="mis3371logo.png"
-                    alt="Houston Vitality Sports Medicine"
-                    class="logo"> </td>
-            <td><div class="h1">
-                <br>
-                <br>
-                <br>
-                <h1>Contact us</h1></div>
-            </td></table>
-        </div>
-        <div class="footer">
-        <div class="column">
-            <p><strong>Phone:</strong>(111) 111-1111</p>
-            <p><strong>Address:</strong>555 Rockets Lane<br>Houston, TX 77044</p>
-            <p><strong>PO Box:</strong>9876</p>
-        </div>
-        <div class="column">
-            <p><strong>Email:</strong>htownvitality@sportsmed.com</p>
-                <a href="https://www.instagram.com/"
-                    target="_blank">
-                <input type="button"
-                        value="Vitality Instagram"></a>
-            <p><strong>Website</strong>
-            <a href="https://uh.edu/" 
-                    target="_blank" >
-            <input type="button" 
-                    value="Vitality Sports Medicine" ></a>
-        </div>
-        </div>
-    </footer>
 
 </html>

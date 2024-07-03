@@ -5,25 +5,43 @@ Date Updated: 2024-23-06
 Version: 0.2
 Purpose: MIS3371 CSS for Homework Medical Form*/
 
+html {
+  background-image: url(houstonskyline.jpg);
+  background-size: cover;
+  height: 100%;
+}
+
+.header{
+  background-color: #F3F2EE;
+}
+
 .h1 {
   display: center;
   text-align: center;
   align-items: center;
   background-color:#F3F2EE;
+  opacity: 0.9;
   color: #1F2B5B;
-  padding: 20 px;
   font-size: 35 px;
   font-family: "Be Vietnam", sans-serif;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  width: 100%;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .logo {
   width: 200px;
   height: auto;
   float: center;
-  margin-bottom: auto;
-  margin-top: auto;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 0;
 }
 
 .date {
@@ -32,12 +50,11 @@ Purpose: MIS3371 CSS for Homework Medical Form*/
 }
 
 .body {
-  background-image: url(houstonskyline.jpg);
-  margin-top 10;
+  margin-top: 10;
   padding:0;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 100 vh;
   justify-content: flex-start;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -45,17 +62,14 @@ Purpose: MIS3371 CSS for Homework Medical Form*/
   font-family: "Times New Roman", Times, serif;
 }
 
-.form-container,
-.displayinputs {
-  background-image: url(houstonskyline.jpg);
-  background-size: cover;
-  background-position: center;
-  margin: 0;
+iframe {
+  width: 100%;
+  height: 300px;
 }
 
 .form-container
 form {
-  background-color: ##D3D3D3; 
+  background-color: #D3D3D3; 
   padding: 20px;
   border-radius: 10px;
   margin: 0;
@@ -89,7 +103,10 @@ td {
 
 .footerh {
     background-color: #F3F2EE;
+    opacity: 0.9;
     color: #1F2B5B;
+    margin: 0;
+    padding: 0;
     display: center;
     text-align: center;
     align-items: center;
@@ -98,7 +115,7 @@ td {
     width: 100%
 }
 
-.footer {
+footer {
   background-color: #F3F2EE;
   color: #1F2B5B;
   display: flex;
@@ -106,7 +123,9 @@ td {
   text-align: center;
   font-family: "Times New Roman", Times, serif;
   font-size: 15px;
-  padding: 20px 0;
+  margin: 0;
+  margin-top: auto;
+  padding: 0;
 }
 
 table.output,
