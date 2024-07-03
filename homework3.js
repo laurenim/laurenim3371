@@ -373,17 +373,20 @@ function setCookie(cname, cvalue, exdays) {
     if (fname != "" && lname != "") {
       alert("Welcome back " + fname + "" + lname + "!");
       createNewUsername (fname, lname);
-    } else {
-      fname = prompt("Welcome New User!", "");
-      if (fname != "" && fname != null && lname !="" && lnmae !=null) {
-        let rememberMe = document.getElementById("rememberMe").checked;
-        if (rememberMe) {
-           setCookie ("fname", fname, 2);
-           setCookie ("lname", lname, 2);
-        }
-      }
+      document.getElementById("fname").value = fname;
+      document.getElementById ("lname").value = lname;
     }
   }
+ function handleFormSubmit(event) {
+    event.preventDefault();
+    let fname = document.getElementById("fname").value;
+    let lname = document.getElementById("lname").value;
+    if (rememberMe) {
+        setCookie("fname" , fname, 2);
+        setCookie("lname" , lname, 2);
+    }
+    alert("Cookies accepted!");
+}
 
   function createNewUsername(fname, lname) {
     let newUserDiv = document.createElement("div");
@@ -397,4 +400,7 @@ function setCookie(cname, cvalue, exdays) {
     location.reload();
   }
 
-  window.onload = checkCookie;
+  window.onload = function () {
+    checkCookie();
+    document.getElementById("userForm").addEventListener("submit" , handleFormSubmit);
+  }
